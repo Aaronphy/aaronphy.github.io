@@ -1,0 +1,21 @@
+{% extends 'includes/layout.njk' %}
+
+{% block body %}
+  <div class="app-page">
+    <h1>{{ page.tag }}</h1>
+    {% for postItem in page.posts.toArray() %}
+      <div class="tag-item">
+        <a href="{{ url_for(article.path) }}">
+          {{ article.title }}
+        </a>
+        <time datetime="{{ date_xml(article.date) }}">
+          {{ date(article.date) }}
+        </time>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="app-paginator">
+    {{ paginator() }}
+  </div>
+{% endblock %}

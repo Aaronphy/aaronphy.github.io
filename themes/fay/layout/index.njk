@@ -1,0 +1,8 @@
+{% extends 'includes/layout.njk' %}
+
+{% block body %}
+  {% include 'includes/recent-posts.njk' %}
+  <div class="app-paginator">
+    {{ paginator() }}
+  </div>
+{% endblock %}

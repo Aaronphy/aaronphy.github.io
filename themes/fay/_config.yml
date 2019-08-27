@@ -1,0 +1,27 @@
+
+# html lang
+language: en
+
+# main menu navigation
+menu:
+  Home: /
+  About: /about
+  Contact: /contact
+  Archives: /archives
+
+categories:
+- JavaScript
+- CSS
+- HTML
+
+# headerjs
+headerjs:
+- /js/path.js
+
+# stylesheets loaded in the <head>
+stylesheets:
+- /css/fay.css
+
+# scripts loaded in the end of the body
+scripts:
+- /js/fay.js

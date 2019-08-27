@@ -1,0 +1,91 @@
+{% set pageTitle = page.title or config.subtitle or '' %}
+
+{% if is_archive() %}
+  {% set pageTitle = 'Archives' %}
+{% endif %}
+
+{% if is_tag() %}
+  {% set pageTitle = 'Tag: ' + page.tag %}
+{% endif %}
+
+{% if is_category() %}
+  {% set pageTitle = 'Category: ' + page.category %}
+{% endif %}
+
+{% if is_month() %}
+  {% set pageTitle = pageTitle + ': ' + page.month + '/' + page.year %}
+{% endif %}
+
+{% if is_year() %}
+  {% set pageTitle = pageTitle + ': ' + page.year %}
+{% endif %}
+
+{% set pageTitle = pageTitle + ' [ ' + config.title + ' ]' %}
+
+<!doctype html>
+<html lang="{{ config.language }}">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8"/>
+  <title>{{ pageTitle }}</title>
+  <link rel="icon" href="https://gw.alicdn.com/tfs/TB1mGdthXzqK1RjSZSgXXcpAVXa-488-502.png">
+  {% if (theme.stylesheets != undefined) and (theme.stylesheets.length > 0) %}
+    {# stylesheet list from _config.yml #}
+    {% for url in theme.stylesheets %}
+      <link rel="stylesheet" href="{{ url }}">
+    {% endfor %}
+  {% endif %}
+  {% if (theme.headerjs != undefined) and (theme.headerjs.length > 0) %}
+  {# scripts list from config.yml #}
+  {% for url in theme.headerjs %}
+    <script src="{{ url }}"></script>
+  {% endfor %}
+{% endif %}
+  
+</head>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var loading = document.getElementById('app-loading');
+    var content = document.getElementById('main-content');
+    var app = document.getElementById('app');
+    content.className += " fade-in";
+    setTimeout(()=>{
+      loading.style.opacity = '0';
+      {# app.style.width = '100vw';
+      app.style.opacity = '1'; #}
+      setTimeout(()=>{
+       loading.style.display = 'none';
+      },300)
+    },500)
+  });
+</script>
+<body>
+<div id="app" class="app">
+  <div class="app-sider">
+    <div class="logo gradient" data-text="Aaronphy">Aaronphy</div>
+    <div class="sider-menu">
+      {% for key,value in theme.menu %}
+        {%if( theme.menu[key] == '/')%}
+          <a href="{{ theme.menu[key] }}" class="{%if url_for(path).replace('index.html','') == theme.menu[key] %}menu-active gradient{%endif%}">{{ key }}</a>
+        {% else %}
+          <a href="{{ theme.menu[key] }}" class="{%if url_for(path).replace('/index.html','') == theme.menu[key] %}menu-active gradient{%endif%}">{{ key }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="app-main">
+        <div class="main-content">
+          <div class="content-inner" id="main-content">
+            {% block body %}{% endblock %}
+          </div>
+        </div>
+  </div>
+  <div id="app-loading"></div>
+</div>
+{% if (theme.scripts != undefined) and (theme.scripts.length > 0) %}
+  {# scripts list from config.yml #}
+  {% for url in theme.scripts %}
+    <script src="{{ url }}"></script>
+  {% endfor %}
+{% endif %}
+</body>
+</html>

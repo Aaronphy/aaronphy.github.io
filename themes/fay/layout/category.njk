@@ -1,0 +1,21 @@
+{% extends 'includes/layout.njk' %}
+
+{% block body %}
+  <div class="app-page">
+    <h1>{{ page.category }}</h1>
+    {% for postItem in page.posts.toArray() %}
+      <div class="category-item">
+        <a href="{{ url_for(postItem.path) }}">
+          {{ postItem.title }}
+        </a>
+        <time datetime="{{ date_xml(postItem.date) }}">
+          {{ date(postItem.date) }}
+        </time>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="app-paginator">
+    {{ paginator() }}
+  </div>
+{% endblock %}
