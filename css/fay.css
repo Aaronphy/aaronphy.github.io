@@ -1036,8 +1036,8 @@ body {
 .app-main .main-content {
   flex: 1;
   overflow: auto;
-  padding: 10px;
-  margin: 40px 0px;
+  padding: 0 10px;
+  margin-bottom: 40px 0px;
 }
 .app-main .main-content .content-inner {
   transition: all 3s cubic-bezier(0.335, 0.01, 0.03, 1.36);
