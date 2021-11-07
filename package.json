@@ -59,9 +59,9 @@
     "format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,json,css}}'",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "build": "rm -rf public && rm -rf docs && rm -rf .cache && gatsby build && mkdir docs && mv public docs",
+    "build": "rm -rf public && rm -rf docs && rm -rf .cache && gatsby build && mkdir docs && cp -r public/ docs/",
     "now-build": "gatsby build",
-    "deploy": "yarn build && gh-pages -d public -b master",
+    "deploy": "yarn build && gh-pages -b master",
     "js-to-jsx": "node src/utils/js-to-jsx"
   },
   "husky": {
