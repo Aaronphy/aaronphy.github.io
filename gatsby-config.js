@@ -80,7 +80,6 @@ module.exports = {
                 <div style="margin-top=55px; font-style: italic;">(This is an article posted at Aaronphy. You can read it online by <a href="${siteUrl +
                   edge.node.fields.slug}">clicking here</a>.)</div>
               `;
-
                 let html = edge.node.html;
                 // Hacky workaround for https://github.com/gaearon/overreacted.io/issues/65
                 html = html
